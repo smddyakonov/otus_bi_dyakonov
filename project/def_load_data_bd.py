@@ -20,10 +20,3 @@ def load_data_from_sqlite(db_path, table_name):
     conn.close()
 
     return df
-
-#db_path = 'data.db'        # Укажите путь к вашему файлу базы данных SQLite
-#table_name = 'df_data_ee'  # Укажите имя таблицы
-
-#df = load_data_from_sqlite(db_path, table_name)
-#print(df.info())
-

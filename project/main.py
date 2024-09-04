@@ -31,10 +31,6 @@ file = r'часы РРЭ.xlsx'
 df_pnr = get_xlsx(file = file, parse_flag=True, sheet_name='rph', header_row=0)
 df_ppn = get_xlsx(file = file, parse_flag=True, sheet_name='phpn', header_row=0)
 
-
-#file = r'df_data_ee.xlsx'
-#df_data = get_xlsx(file=file, parse_flag=True, sheet_name='Sheet1', header_row=0)
-
 db_path = 'data.db'        # Укажите путь к вашему файлу базы данных SQLite
 table_name = 'df_data_ee'  # Укажите имя таблицы
 
@@ -59,10 +55,8 @@ sales_options = [{'value':col,'label':col} for col in df_data['id_Объект']
 district_options = [{'value':col,'label':col} for col in df_data['Ур. напряж. расч.'].unique().tolist()]
 
 # Динамические колонки таблицы
-
 columns_options = [{'value':col,'label':col} for col in df_data.columns]
-#columns_list = ['date', 'id_ТУ', 'value', 'id_Объект', 'Ур. напряж. расч.', 'ЦК', 'Подгруппа макс. мощ.', 'year', 'month', 'hour']
-#columns_options = [{'value':col,'label':col} for col in columns_list]
+
 
 # ЭЛЕМЕНТЫ
 
@@ -403,10 +397,9 @@ def table_constructor(value):
     if value is None:
         return ''
 
-    #columns_list = ['date', 'id_ТУ', 'value', 'id_Объект', 'Ур. напряж. расч.', 'ЦК', 'Подгруппа макс. мощ.', 'year', 'month', 'hour']
+
     f_data = df_data.copy(deep=True)
-    # f_data = df_data[columns_list].copy(deep=True)
-    #f_data.columns = ['дата', 'код точки учета', 'значение, кВт', 'код объекта', 'Ур. напряж. расч.', 'ЦК', 'Подгруппа макс. мощ.', 'год', 'месяц', 'час']
+
     f_data = f_data[value]
 
     element = dash_table.DataTable(
@@ -416,10 +409,6 @@ def table_constructor(value):
 
     return element
 
-# Перед самой функцией callback убедитесь, что данные загружены корректно
-#print(df_data.head())  # Должен показать первые несколько строк
-#print(df_ppn.head())
-#print(df_pnr.head())
 
 @app.callback(
     Output(component_id='table_with_insight_em',component_property='children'),
@@ -470,6 +459,7 @@ def table_with_insight_ee_constructor(value):
 
     f_data = df_data.copy(deep=True)
     f_data_describe = f_data.loc[f_data['id_Объект'].isin(list_id_object)].describe().reset_index()
+    f_data_describe = f_data_describe.apply(lambda x: round(x, 2) if x.dtype == 'float64' else x)
 
 
     # Преобразуем DataFrame в таблицу Dash

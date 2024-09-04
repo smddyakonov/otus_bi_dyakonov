@@ -306,7 +306,6 @@ def create_histogram_with_boxplot(df_data, column='id_Объект', volt_list=N
     # Построение гистограммы с боксовым графиком сверху и карманами
     fig = px.histogram(
         data_frame=grouped_data,
-        #x='value',
         x='value',
         color=column,
         hover_data=grouped_data.columns,
@@ -369,9 +368,6 @@ def calculate_network_power(df_data, df_ppn, df_pnr):
     monthly_average['год_месяц'] = monthly_average['year'].astype(str) + '-' + monthly_average['month'].astype(str)
 
     return monthly_average
-
-
-import pandas as pd
 
 
 def calculate_and_merge_power_data(df_data, df_ppn, df_pnr, id_object):
