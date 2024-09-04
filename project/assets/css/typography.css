@@ -1,0 +1,26 @@
+body {
+    font-family: 'ArialNarrow';
+    font-weight: normal;
+    font-style: normal;
+}
+
+h3, h6 {
+    font-family: 'ArialNarrow';
+    font-weight: bold;
+    font-style: bold;
+    text-align: center;
+}
+
+h4, h5 {
+    font-family: 'ArialNarrow';
+    font-weight: bold;
+    font-style: lightweight;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'ArialNarrow';
+    font-weight: bold;
+    text-align: left;
+    margin-top: 17px
+}

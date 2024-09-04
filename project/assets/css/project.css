@@ -1,0 +1,17 @@
+.app-header{
+    font-family: 'ArialNarrow';
+    font-weight: bold;
+    text-align: left;
+    border-bottom: thin solid transparent;
+    background-color: #202020;
+    color:white;
+}
+
+.app-footer{
+    font-family: 'ArialNarrow';
+    font-weight: bold;
+    text-align: left;
+    border-bottom: thin solid transparent;
+    background-color: #212121;
+    color: #818181;
+}
